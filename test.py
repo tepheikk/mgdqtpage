@@ -10,10 +10,14 @@ class MyTest(QtGui.QMainWindow, Ui_PageEditor):
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
-        self.quitbutton.clicked.connect(self.quitcallback)
-        self.newbutton.clicked.connect(self.newcallback)
-        self.pagelist.itemDoubleClicked.connect(self.open_page)
-        self.savebutton.clicked.connect(self.savecallback)
+        # self.quitbutton.clicked.connect(self.quitcallback)
+        self.connect(self.quitbutton, QtCore.SIGNAL('clicked()'), self.quitcallback)
+        # self.newbutton.clicked.connect(self.newcallback)
+        self.connect(self.newbutton, QtCore.SIGNAL('clicked()'), self.newcallback)
+        self.connect(self.pagelist, QtCore.SIGNAL('itemDoubleClicked(QListWidgetItem*)'), self.open_page)
+        # self.pagelist.itemDoubleClicked.connect(self.open_page)
+        self.connect(self.savebutton, QtCore.SIGNAL('clicked()'), self.savecallback)
+        #self.savebutton.clicked.connect(self.savecallback)
         
         self.update_list()
         
